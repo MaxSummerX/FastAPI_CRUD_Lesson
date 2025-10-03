@@ -45,4 +45,4 @@ async def delete_message(message_id: int) -> str:
 @router.delete("/messages", status_code=status.HTTP_200_OK, tags=["messages"])
 async def delete_messages() -> str:
     messages_db.clear()
-    return "All message deleted!"
+    return "All messages deleted!"

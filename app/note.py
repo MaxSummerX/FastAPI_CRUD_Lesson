@@ -34,3 +34,17 @@ async def update_note(note_id: int, note: str = Body(...)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Note not found")
     notes_db[note_id] = note
     return "Note updated!"
+
+
+@router.delete("/notes/{note_id}", status_code=status.HTTP_200_OK, tags=["notes"])
+async def delete_note(note_id) -> str:
+    if note_id not in notes_db:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Note not found")
+    notes_db.pop(note_id)
+    return f"Note ID={note_id} deleted!"
+
+
+@router.delete("/notes", status_code=status.HTTP_200_OK, tags=["notes"])
+async def delete_notes() -> str:
+    notes_db.clear()
+    return "All notes deleted!"
