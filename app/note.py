@@ -26,3 +26,11 @@ async def create_note(note: str = Body(...)) -> str:
     current_index = max(notes_db) + 1 if notes_db else 0
     notes_db[current_index] = note
     return "Note created!"
+
+
+@router.put("/notes/{note_id}", status_code=status.HTTP_200_OK, tags=["notes"])
+async def update_note(note_id: int, note: str = Body(...)):
+    if note_id not in notes_db:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Note not found")
+    notes_db[note_id] = note
+    return "Note updated!"
