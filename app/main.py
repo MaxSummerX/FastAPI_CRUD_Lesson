@@ -1,4 +1,4 @@
-from fastapi import Body, FastAPI, status
+from fastapi import Body, FastAPI, HTTPException, status
 
 
 app = FastAPI(
@@ -29,7 +29,10 @@ async def read_messages() -> dict:
 
 @app.get("/messages/{message_id}", tags=["messages"])
 async def read_message(message_id: int) -> str:
-    return messages_db[message_id]
+    try:
+        return messages_db[message_id]
+    except KeyError:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Message not found")
 
 
 @app.post("/messages", status_code=status.HTTP_201_CREATED, tags=["messages"])
