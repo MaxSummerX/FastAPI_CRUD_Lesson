@@ -1,0 +1,52 @@
+from fastapi import FastAPI
+
+
+app = FastAPI(
+    debug=True,  # Нужно для отладки приложения, в продакшене ставить False
+    title="FastAPI Project",  # Название API
+    summary="My CRUD application.",  # добавить краткое описание API
+    description="The CRUD application supports **writing**, *reading*, updating, and deleting messages.",  # Подробного описания, поддерживающий синтаксис Markdown
+    version="0.0.1",  # Версия приложения
+    openapi_url="/api/v1/openapi.json",  # определяет URL, по которому доступна схема OpenAPI в формате JSON
+    openapi_tags=[
+        {"name": "messages", "description": "Messages operations"}
+    ],  # Группировки операций в документации через tags
+    docs_url="/swagger-docs",  # Путь к которому задаётся Swagger UI
+    redoc_url=None,  # Путь к которому задаётся ReDoc. None - чтобы отключить
+    swagger_ui_oauth2_redirect_url="/custom-oauth-redirect",  # Поддержки OAuth2 в Swagger UI
+    swagger_ui_init_oauth={
+        "clientId": "your-client-id"
+    },  # Настройка параметры OAuth2 для кнопки "Authorize" в Swagger UI
+)
+
+messages_db = {0: "First post in FastAPI"}
+
+
+@app.get("/messages", tags=["messages"])
+async def read_messages() -> dict:
+    pass
+
+
+@app.get("/messages/{message_id}", tags=["messages"])
+async def read_message(message_id: int) -> str:
+    pass
+
+
+@app.post("/messages", tags=["messages"])
+async def create_message(message: str) -> str:
+    pass
+
+
+@app.put("/messages/{message_id}", tags=["messages"])
+async def update_message(message_id: int, message: str) -> str:
+    pass
+
+
+@app.delete("/messages/{message_id}", tags=["messages"])
+async def delete_message(message_id: int) -> str:
+    pass
+
+
+@app.delete("/messages", tags=["messages"])
+async def delete_messages() -> str:
+    pass
