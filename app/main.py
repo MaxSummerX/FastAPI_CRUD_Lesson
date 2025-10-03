@@ -42,9 +42,12 @@ async def create_message(message: str = Body(...)) -> str:
     return "Message created!"
 
 
-@app.put("/messages/{message_id}", tags=["messages"])
-async def update_message(message_id: int, message: str) -> str:
-    pass
+@app.put("/messages/{message_id}", status_code=status.HTTP_200_OK, tags=["messages"])
+async def update_message(message_id: int, message: str = Body(...)) -> str:
+    if message_id not in messages_db:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Message not found")
+    messages_db[message_id] = message
+    return "Message update!"
 
 
 @app.delete("/messages/{message_id}", tags=["messages"])
