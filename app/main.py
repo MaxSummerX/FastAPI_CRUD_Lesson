@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import Body, FastAPI, status
 
 
 app = FastAPI(
@@ -32,9 +32,11 @@ async def read_message(message_id: int) -> str:
     return messages_db[message_id]
 
 
-@app.post("/messages", tags=["messages"])
-async def create_message(message: str) -> str:
-    pass
+@app.post("/messages", status_code=status.HTTP_201_CREATED, tags=["messages"])
+async def create_message(message: str = Body(...)) -> str:
+    current_index = max(messages_db) + 1 if messages_db else 0
+    messages_db[current_index] = message
+    return "Message created!"
 
 
 @app.put("/messages/{message_id}", tags=["messages"])
