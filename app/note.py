@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Body, HTTPException, status
 
 
 router = APIRouter()
@@ -19,3 +19,10 @@ async def read_note(note_id: int) -> str:
         return notes_db[note_id]
     except KeyError:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Note not found")
+
+
+@router.post("/notes", status_code=status.HTTP_201_CREATED, tags=["notes"])
+async def create_note(note: str = Body(...)) -> str:
+    current_index = max(notes_db) + 1 if notes_db else 0
+    notes_db[current_index] = note
+    return "Note created!"
