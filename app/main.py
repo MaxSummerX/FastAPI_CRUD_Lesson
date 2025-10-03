@@ -24,12 +24,12 @@ messages_db = {0: "First post in FastAPI"}
 
 @app.get("/messages", tags=["messages"])
 async def read_messages() -> dict:
-    pass
+    return messages_db
 
 
 @app.get("/messages/{message_id}", tags=["messages"])
 async def read_message(message_id: int) -> str:
-    pass
+    return messages_db[message_id]
 
 
 @app.post("/messages", tags=["messages"])
