@@ -30,3 +30,14 @@ class Task(BaseModel):
     id: int
     title: str
     completed: bool
+
+
+class UserCreate(BaseModel):
+    name: str
+    age: int = Field(..., ge=18)
+
+
+class User(BaseModel):
+    id: int
+    name: str
+    age: int = Field(..., ge=18)

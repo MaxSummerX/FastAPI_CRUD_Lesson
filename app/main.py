@@ -4,6 +4,7 @@ from app.comment import router as comment_router
 from app.message import router as message_router
 from app.note import router as note_router
 from app.task import router as task_router
+from app.user import router as user_router
 
 
 app = FastAPI(
@@ -18,6 +19,7 @@ app = FastAPI(
         {"name": "notes", "description": "Notes operations"},
         {"name": "comments", "description": "Comments operations"},
         {"name": "tasks", "description": "Tasks operations"},
+        {"name": "users", "description": "Users operations"},
     ],  # Группировки операций в документации через tags
     docs_url="/swagger-docs",  # Путь к которому задаётся Swagger UI
     redoc_url=None,  # Путь к которому задаётся ReDoc. None - чтобы отключить
@@ -31,3 +33,4 @@ app.include_router(message_router)
 app.include_router(note_router)
 app.include_router(comment_router)
 app.include_router(task_router)
+app.include_router(user_router)
