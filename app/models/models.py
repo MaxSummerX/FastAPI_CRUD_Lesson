@@ -41,3 +41,8 @@ class User(BaseModel):
     id: int
     name: str
     age: int = Field(..., ge=18)
+
+
+class UserUpdate(BaseModel):
+    name: str
+    age: int = Field(..., ge=18)
