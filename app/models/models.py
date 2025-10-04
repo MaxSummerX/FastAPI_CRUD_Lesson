@@ -6,9 +6,14 @@ class Author(BaseModel):
     email: EmailStr
 
 
-class Message(BaseModel):
+class Messages(BaseModel):
     id: int = Field(..., gt=0)
     content: str = Field(min_length=1, max_length=500, pattern=r"[a-zA-Z\s!,.?]*$")
     author: Author
     tags: list[str] | None = Field(default=None)
     priority: float = Field(default=0.0, ge=0.0, le=10.0)
+
+
+class Message(BaseModel):
+    id: int
+    content: str
