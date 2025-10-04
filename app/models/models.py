@@ -23,3 +23,10 @@ class MessageCreate(BaseModel):
 class Message(BaseModel):
     id: int
     content: str
+
+
+# Модель для создания задачи в базе данных
+class Task(BaseModel):
+    id: int
+    title: str
+    completed: bool
