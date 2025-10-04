@@ -14,6 +14,12 @@ class Messages(BaseModel):
     priority: float = Field(default=0.0, ge=0.0, le=10.0)
 
 
+# Модель для входных данных (запросов: создание и обновление)
+class MessageCreate(BaseModel):
+    content: str
+
+
+# Модель для ответов и хранения в базе данных
 class Message(BaseModel):
     id: int
     content: str
