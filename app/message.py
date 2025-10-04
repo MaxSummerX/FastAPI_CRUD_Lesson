@@ -43,6 +43,7 @@ async def update_message(message_id: int, message_create: MessageCreate) -> Mess
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Message not found")
 
 
+# DELETE /messages/{message_id}: Удаление одного сообщения
 @router.delete("/messages/{message_id}", status_code=status.HTTP_200_OK, tags=["messages"])
 async def delete_message(message_id: int) -> dict:
     for i, message in enumerate(messages_db):
@@ -52,6 +53,7 @@ async def delete_message(message_id: int) -> dict:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Message not found")
 
 
+# DELETE /messages: Удаление всех сообщений
 @router.delete("/messages", status_code=status.HTTP_200_OK, tags=["messages"])
 async def delete_messages() -> dict:
     messages_db.clear()
