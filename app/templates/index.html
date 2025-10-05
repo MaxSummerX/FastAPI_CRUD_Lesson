@@ -2,22 +2,32 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Список сообщений</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Список сообщений</h1>
-    <a href="/web/messages/create">Создать новое сообщение</a>
-    {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li>
-                <a href="/web/messages/{{ message.id }}">{{ message.content }}</a> (ID: {{ message.id }})
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>Сообщений пока нет.</p>
-    {% endif %}
+    <div class="container">
+        <h1>Список сообщений</h1>
+
+        <div class="actions">
+            <a href="/web/messages/create" class="btn btn-primary">Создать новое сообщение</a>
+        </div>
+
+        {% if messages %}
+            <ul class="messages-list">
+                {% for message in messages %}
+                    <li class="message-item">
+                        <a href="/web/messages/{{ message.id }}" class="message-link">
+                            <span class="message-content">{{ message.content }}</span>
+                            <span class="message-id">ID: {{ message.id }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="empty-state">Сообщений пока нет.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

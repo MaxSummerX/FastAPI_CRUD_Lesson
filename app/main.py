@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from app.comment import router as comment_router
 from app.message import router as message_router
@@ -28,6 +29,9 @@ app = FastAPI(
         "clientId": "your-client-id"
     },  # Настройка параметры OAuth2 для кнопки "Authorize" в Swagger UI
 )
+
+# Настройка статических файлов
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 app.include_router(message_router)
 app.include_router(note_router)

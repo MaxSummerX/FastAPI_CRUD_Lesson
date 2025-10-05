@@ -2,16 +2,30 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создать сообщение</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Создать новое сообщение</h1>
-    <form action="/web/messages" method="post">
-        <label for="content">Сообщение:</label>
-        <textarea id="content" name="content" required></textarea>
-        <button type="submit">Отправить</button>
-    </form>
-    <a href="/web/messages">Вернуться к списку</a>
+    <div class="container">
+        <h1>Создать новое сообщение</h1>
+
+        <form action="/web/messages" method="post" class="message-form">
+            <div class="form-group">
+                <label for="content">Сообщение:</label>
+                <textarea
+                    id="content"
+                    name="content"
+                    placeholder="Введите текст сообщения..."
+                    required
+                ></textarea>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">Отправить</button>
+                <a href="/web/messages" class="btn btn-secondary">Отменить</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

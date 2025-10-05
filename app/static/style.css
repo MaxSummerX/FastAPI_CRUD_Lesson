@@ -1,36 +1,294 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-h1 {
-    color: #333;
-}
-ul {
-    list-style-type: none;
+/* ============================================
+   ГЛОБАЛЬНЫЕ СТИЛИ
+   ============================================ */
+* {
+    margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-li {
-    margin: 10px 0;
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background: linear-gradient(135deg, #dcdcdc 0%, #f5f5f5 50%, #e0e0e0 100%);
+    color: #2c2c2c;
+    min-height: 100vh;
+    line-height: 1.6;
 }
+
+/* ============================================
+   ТИПОГРАФИКА
+   ============================================ */
+h1, h2, h3 {
+    color: #2b2b2b;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+/* ============================================
+   КОНТЕЙНЕР
+   ============================================ */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffffd9;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(5px);
+}
+
+/* ============================================
+   КНОПКИ И ДЕЙСТВИЯ
+   ============================================ */
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Основная кнопка (создать, отправить) */
+.btn-primary {
+    background: linear-gradient(135deg, #4a4a4a, #2c2c2c);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5c5c5c, #3a3a3a);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Вторичная кнопка (отменить, вернуться) */
+.btn-secondary {
+    background: linear-gradient(135deg, #6c6c6c, #505050);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #7a7a7a, #5e5e5e);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Опасная кнопка (удалить) */
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #e74c3c, #d62c1a);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   СПИСКИ СООБЩЕНИЙ
+   ============================================ */
+.messages-list {
+    list-style-type: none;
+    margin: 30px 0;
+}
+
+.message-item {
+    background: #ffffffcc;
+    border-radius: 10px;
+    margin: 12px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.message-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.message-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    color: #2c2c2c;
+    text-decoration: none;
+    gap: 15px;
+}
+
+.message-content {
+    flex: 1;
+    font-weight: 500;
+}
+
+.message-id {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.message-link:hover .message-content {
+    color: #000;
+}
+
+/* Пустое состояние */
+.empty-state {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px 20px;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   ФОРМЫ
+   ============================================ */
+.message-form {
+    margin: 30px 0;
+}
+
+/* Инлайн-форма для кнопок внутри actions */
+.inline-form {
+    display: inline;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c2c2c;
+    font-size: 0.95rem;
+}
+
 textarea {
     width: 100%;
-    height: 100px;
-    margin: 10px 0;
+    min-height: 150px;
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: white;
 }
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+
+textarea:focus {
+    border-color: #555;
+    box-shadow: 0 0 0 3px rgba(85, 85, 85, 0.1);
+    outline: none;
 }
-button:hover {
-    background-color: #0056b3;
+
+textarea::placeholder {
+    color: #999;
 }
-a {
-    color: #007bff;
-    text-decoration: none;
+
+/* ============================================
+   ДЕТАЛИ СООБЩЕНИЯ
+   ============================================ */
+.message-detail {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 30px 0;
+    border: 1px solid #e0e0e0;
 }
-a:hover {
-    text-decoration: underline;
+
+.detail-row {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #555;
+    min-width: 120px;
+}
+
+.detail-value {
+    flex: 1;
+    color: #2c2c2c;
+    word-break: break-word;
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .message-link {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .message-id {
+        align-self: flex-end;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .detail-label {
+        min-width: auto;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
 }

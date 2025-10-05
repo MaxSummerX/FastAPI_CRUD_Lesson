@@ -2,13 +2,28 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Детали сообщения</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Детали сообщения</h1>
-    <p><strong>ID:</strong> {{ message.id }}</p>
-    <p><strong>Сообщение:</strong> {{ message.content }}</p>
-    <a href="/web/messages">Вернуться к списку</a>
+    <div class="container">
+        <h1>Детали сообщения</h1>
+
+        <div class="message-detail">
+            <div class="detail-row">
+                <span class="detail-label">ID:</span>
+                <span class="detail-value">{{ message.id }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Сообщение:</span>
+                <span class="detail-value">{{ message.content }}</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="/web/messages" class="btn btn-secondary">Вернуться к списку</a>
+        </div>
+    </div>
 </body>
 </html>
