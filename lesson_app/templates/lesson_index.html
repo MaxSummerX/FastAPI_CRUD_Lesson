@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FasaAPI</title>
+</head>
+<body>
+    {# Это комментарий, он не отобразится в итоговом HTML #}
+    {% if user.age >= 18 and user.status %}
+    <h3>Доступ разрешен. {{ "Привет, " ~ user.name ~ "!" }}</h3>
+        Name: {{ user.name }}<br>
+        Age: {{ user.age + 20 }} <br>
+        Email: {{ user.email }}<br>
+        City: {{ user.data.city if "Moscow" in user.data.city else "-" }}<br>
+        Tags: {{ user.data.tags|join(', ') }}<br>
+        Total tags: {{ user.data.tags|length }}
+    {% else %}
+        Доступ запрещен.
+    {% endif %}<br>
+    <br>
+    {% for tags in user.data.tags %}
+        {% if tags == "FastAPI" %}
+            {{ "Ура, " ~ tags ~ "!" }}<br>
+        {% else %}
+            {{ tags|title }}<br>
+        {% endif %}
+    {% else %}
+        Тэгов нет.
+    {% endfor %}
+</body>
+</html>
